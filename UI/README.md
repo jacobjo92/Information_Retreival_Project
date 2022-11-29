@@ -7,7 +7,7 @@ UI/run.sh
 
 ## Using search
 ```
-UI/main.py
+python3 UI/main.py
 ```
 
 ## Stopping server and deleting collections.
