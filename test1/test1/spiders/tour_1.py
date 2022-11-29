@@ -19,11 +19,11 @@ class EdxSpider(scrapy.Spider):
 
         description = tour_page_response.css(
             '.activity-overview__content--certified::text').get()
-        description = description.replace('\n    ','')
 
         if description == None:
             description = tour_page_response.css(
                 '.activity-overview__content::text').get()
+            description = description.replace('\n    ','')
 
         price = tour_page_response.css(
             '.price-block__price-actual span::text').get()
@@ -31,13 +31,13 @@ class EdxSpider(scrapy.Spider):
 
         rating = tour_page_response.css(
             '.activity__rating--totals::text').get()
-        rating =rating.replace('\n      ','')
-        rating =rating.replace('\n    ','')
+        # rating =rating.replace('\n      ','')
+        # rating =rating.replace('\n    ','')
       
 
         provider = tour_page_response.css('.supplier-name__link::text').get()
-        provider = provider.replace('\n    ','')
-        provider = provider.replace('\n  ','')
+        # provider = provider.replace('\n    ','')
+        # provider = provider.replace('\n  ','')
         yield {
             "title": title,
             "Description ": description,
@@ -45,7 +45,4 @@ class EdxSpider(scrapy.Spider):
             "rating": rating,
             "provider": provider
         }
-        # correctify(title, description, price, rating, provider)
 
-        # def correctify(title, description, price, rating, provider):
-        #     if tie
