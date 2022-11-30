@@ -12,24 +12,25 @@ def main():
     
     app = QApplication(sys.argv)
     window = ui.Window()
-    sys.exit(app.exec_())
+    window.show()
     
-    print("Select one of the following:\n")
-    print("[1] Get Your Guide\n")
-    print("[2] Swiss tours\n")
-    print("[3] Viator\n")
+    # print("Select one of the following:\n")
+    # print("[1] Get Your Guide\n")
+    # print("[2] Swiss tours\n")
+    # print("[3] Viator\n")
 
-    choice = int(input("Choice: "))
+    # choice = int(input("Choice: "))
     
-    if (choice == 1):
-        print("You chose: " + WEBSITE_1+'\n')
-    elif (choice == 2):
-        print("You chose: " + WEBSITE_2+'\n')
-    elif (choice == 3):
-        print("You chose: " + WEBSITE_3+'\n')
+    # if (choice == 1):
+    #     print("You chose: " + WEBSITE_1+'\n')
+    # elif (choice == 2):
+    #     print("You chose: " + WEBSITE_2+'\n')
+    # elif (choice == 3):
+    #     print("You chose: " + WEBSITE_3+'\n')
         
-    question = input("What is your query: ")
-    query(choice, question)
+    # question = input("What is your query: ")
+    
+    sys.exit(app.exec_())
 
 if __name__ == '__main__':
     main()

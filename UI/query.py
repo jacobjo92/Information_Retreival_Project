@@ -49,6 +49,7 @@ def query(choice = 1, user_query = "."):
             rating = "Rating: " + cleanup_string(str(a['rating'][0]))
             document = create_md("Results of your query",title,description,price,rating)
             document.output_page(RESULT_OUTPUT_PATH)
+            print(document)
             
             
     else:
