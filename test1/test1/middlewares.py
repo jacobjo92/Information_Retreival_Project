@@ -109,6 +109,9 @@ class Test1DownloaderMiddleware:
         
     
 
+
+# Got this from:
+# #https://stackoverflow.com/questions/43630434/how-to-handle-a-429-too-many-requests-response-in-scrapy
 class TooManyRequestsRetryMiddleware(RetryMiddleware):
 
     def __init__(self, crawler):
