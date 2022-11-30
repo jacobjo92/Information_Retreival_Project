@@ -5,9 +5,8 @@ class EdxSpider(scrapy.Spider):
     name = 'viator2'
 
     def start_requests(self):
-        k =["2","3","4","5","6","7","8","9","10"]
-        n = 50
-        for i in range(0,n):
+        n = 75
+        for i in range(1,n):
             yield scrapy.Request(url="https://www.viator.com/Netherlands/d60-ttd/"+ str(i),
                              callback=self.parse)
 
