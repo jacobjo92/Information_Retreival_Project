@@ -13,8 +13,7 @@ from scrapy.utils.response import response_status_message
 
 import time
 
-
-class Test1SpiderMiddleware:
+class CourseprojectSpiderMiddleware:
     # Not all methods need to be defined. If a method is not defined,
     # scrapy acts as if the spider middleware does not modify the
     # passed objects.
@@ -61,7 +60,7 @@ class Test1SpiderMiddleware:
         spider.logger.info('Spider opened: %s' % spider.name)
 
 
-class Test1DownloaderMiddleware:
+class CourseprojectDownloaderMiddleware:
     # Not all methods need to be defined. If a method is not defined,
     # scrapy acts as if the downloader middleware does not modify the
     # passed objects.
@@ -106,12 +105,11 @@ class Test1DownloaderMiddleware:
 
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
-        
-    
-
 
 # Got this from:
 # #https://stackoverflow.com/questions/43630434/how-to-handle-a-429-too-many-requests-response-in-scrapy
+
+
 class TooManyRequestsRetryMiddleware(RetryMiddleware):
 
     def __init__(self, crawler):
@@ -127,11 +125,12 @@ class TooManyRequestsRetryMiddleware(RetryMiddleware):
             return response
         elif response.status == 429:
             self.crawler.engine.pause()
-            time.sleep(60) # If the rate limit is renewed in a minute, put 60 seconds, and so on.
+            # If the rate limit is renewed in a minute, put 60 seconds, and so on.
+            time.sleep(60)
             self.crawler.engine.unpause()
             reason = response_status_message(response.status)
             return self._retry(request, reason, spider) or response
         elif response.status in self.retry_http_codes:
             reason = response_status_message(response.status)
             return self._retry(request, reason, spider) or response
-        return response 
+        return response

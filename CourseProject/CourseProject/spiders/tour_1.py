@@ -40,7 +40,7 @@ class EdxSpider(scrapy.Spider):
         # provider = provider.replace('\n  ','')
         yield {
             "title": title,
-            "Description ": description,
+            "description": description,
             "price": price,
             "rating": rating,
             "provider": provider
