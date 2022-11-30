@@ -17,8 +17,7 @@ def main():
     print("[1] Get Your Guide\n")
     print("[2] Swiss tours\n")
     print("[3] Viator\n")
-    
-    
+
     choice = int(input("Choice: "))
     
     if (choice == 1):

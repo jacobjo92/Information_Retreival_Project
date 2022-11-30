@@ -4,7 +4,7 @@ from PyQt5.QtGui import QIcon
 class UI(QMainWindow):
     def __init__(self):
               super().__init__()
-              self.title='Hello, world!'
+              self.title='Search engine test.'
               self.left=10
               self.top=10
               self.width=640
