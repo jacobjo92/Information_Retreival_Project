@@ -4,6 +4,19 @@ from snakemd import Document
 COLLECTION_NAME_1 = "getyourguide"
 COLLECTION_NAME_2 = "swisstour"
 COLLECTION_NAME_3 = "viator"
+RESULT_OUTPUT_PATH ="result"
+
+
+def create_md(doc_name, title,description, price,rating):
+    resultDoc = Document(doc_name)
+    resultDoc.add_header(title)
+    resultDoc.add_paragraph(description)
+    resultDoc.add_paragraph(price)
+    resultDoc.add_paragraph(rating)
+    
+    return resultDoc
+    
+    
 
 def cleanup_string(input):
     input = input.replace("\n", "")
@@ -24,26 +37,19 @@ def query(choice = 1, user_query = "."):
     
     
     # Testing snakemd
-    
-    resultDoc = Document("Results of your query")
+
     
     if res.json()['response']['numFound'] > 0:
         print("Number of results: " + str(res.json()['response']['numFound']))
         for a in res.json()['response']['docs']:
             
             title = cleanup_string(str(a['title'][0]))
-            Description_ = "Description: " + cleanup_string(str(a['Description_'][0]))
+            description = "Description: " + cleanup_string(str(a['Description_'][0]))
             price = "Price: " + cleanup_string(str(a['price'][0]))
             rating = "Rating: " + cleanup_string(str(a['rating'][0]))
+            document = create_md("Results of your query",title,description,price,rating)
+            document.output_page(RESULT_OUTPUT_PATH)
             
-            
-            resultDoc.add_header(title)
-            resultDoc.add_paragraph(Description_)
-            resultDoc.add_paragraph(price)
-            resultDoc.add_paragraph(rating)
-            
-        print(resultDoc)
-        resultDoc.output_page("result")
             
     else:
         print("No documents were found for your query.")

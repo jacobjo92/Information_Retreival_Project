@@ -9,9 +9,10 @@ WEBSITE_2 =  "Swiss Tour"
 WEBSITE_3 =  "Viator"
 
 def main():
-    # app = QApplication(sys.argv)
-    # ex = ui.UI()
-    # sys.exit(app.exec_())
+    
+    app = QApplication(sys.argv)
+    window = ui.Window()
+    sys.exit(app.exec_())
     
     print("Select one of the following:\n")
     print("[1] Get Your Guide\n")
