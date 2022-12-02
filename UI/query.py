@@ -1,7 +1,6 @@
 import requests
-import json
 from snakemd import Document
-from termcolor import colored, cprint
+from termcolor import colored
 COLLECTION_NAME_1 = "getyourguide"
 COLLECTION_NAME_2 = "swisstour"
 COLLECTION_NAME_3 = "viator"
@@ -37,7 +36,33 @@ def create_md_viator(doc, title,description, price,rating):
     doc.add_paragraph(rating)
     
     return doc
-    
+
+
+def print_snippet_get(title,description, price,rating, provider):
+    max_words = 40
+    sep = "#"*50+"\n"
+    print(sep)
+    print(colored(title + "\n", 'red'))
+    result_list = description.split()[:max_words]
+    result_str = " ".join(result_list)
+    print(colored(result_str,'blue') + "\n")
+    print(provider + "\n")
+    print(price + "\n")
+    print(rating + "\n")
+
+
+def print_snippet_swiss(title,description, price,inclusions, exclusions,to_know):
+    max_words = 40
+    sep = "#"*50+"\n"
+    print(sep)
+    print(colored(title + "\n", 'red'))
+    result_list = description.split()[:max_words]
+    result_str = " ".join(result_list)
+    print(colored(result_str,'blue') + "\n")
+    print(inclusions +"\n")
+    print(exclusions +"\n")
+    print(price + "\n")
+    print(to_know +"\n")
     
     
 def print_snippet_viator(title, description, price, rating, user_query):
@@ -95,6 +120,7 @@ def query(choice = 1, user_query = "*%3A*", choice_attribute = 1):
                     provider = "Provider: " + cleanup_string(str(a['provider'][0]))
                     document = create_md_get_your_guide(Doc,title,description,price,rating, provider)
                     document.output_page(RESULT_OUTPUT_PATH)
+                    print_snippet_get(title,description,price,rating, provider)
                     
                     
         else:
@@ -119,6 +145,7 @@ def query(choice = 1, user_query = "*%3A*", choice_attribute = 1):
                     to_know = "Things to know: " + cleanup_string(str(a['know_before_you_go'][0]))
                     document = create_md_swiss(Doc,title,description,price, inclusions, exclusions, to_know)
                     document.output_page(RESULT_OUTPUT_PATH)
+                    print_snippet_swiss(title, description, price,inclusions, exclusions, to_know)
 
         else:
             print("No documents were found for your query.")
