@@ -8,6 +8,25 @@ RESULT_OUTPUT_PATH ="result"
 SEARCH_ATTRIBUTE = "title"
 
 
+class Query():
+    def __init__(self, website_choice, search_value, attribute_choice):
+        self.user_query = search_value
+        self.website_choice = website_choice
+        self.attribute_choice = attribute_choice
+        self.result_output_path = RESULT_OUTPUT_PATH
+        
+        
+    def get_request(self):
+        if self.user_query == "":
+            self.user_query = "*%3A*"
+        
+        
+        
+        
+        
+        
+
+
 #TODO reimplement this as a class
 
 def create_md_swiss(doc, title,description, price,inclusions, exclusions,to_know):
