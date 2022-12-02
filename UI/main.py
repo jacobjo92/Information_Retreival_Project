@@ -1,23 +1,11 @@
 import sys
-from ui import Ui_MainWindow
 from query import query
-# import query
-from PyQt5.QtWidgets import QApplication, QMainWindow
 
 WEBSITE_1 =  "Get Your Guide"
 WEBSITE_2 =  "Swiss Tour"
 WEBSITE_3 =  "Viator"
 
 def main():
-    
-    # app = QApplication(sys.argv)
-    # MainWindow = QMainWindow()
-    # ui = Ui_MainWindow()
-    # ui.setupUi(MainWindow)
-    # MainWindow.show()
-    
-    # sys.exit(app.exec_())git p
-    
     seperator = "#"*50 + "\n"
     
     print("Select one of the following:\n")
@@ -29,6 +17,7 @@ def main():
     choice_attribute = 1
     
     if (choice_website == 1):
+        WEBSITE = WEBSITE_1
         print(seperator)
         print("You chose: " + WEBSITE_1+'\n')
         print(seperator)
@@ -39,6 +28,7 @@ def main():
         print("[4] Rating\n")
         choice_attribute = int(input("Choice: "))
     elif (choice_website == 2):
+        WEBSITE = WEBSITE_2
         print(seperator)
         print("You chose: " + WEBSITE_2+'\n')
         print(seperator)
@@ -50,6 +40,7 @@ def main():
         print("[5] Excluded perks\n")
         choice_attribute = int(input("Choice: "))
     elif (choice_website == 3):
+        WEBSITE = WEBSITE_3
         print(seperator)
         print("You chose: " + WEBSITE_3+'\n')
         print(seperator)
@@ -70,7 +61,6 @@ def main():
     
         
     question = input("What is your query: ")
-    
     query(choice_website, question, choice_attribute)
     
 

@@ -1,12 +1,15 @@
 import requests
 import json
 from snakemd import Document
+from termcolor import colored, cprint
 COLLECTION_NAME_1 = "getyourguide"
 COLLECTION_NAME_2 = "swisstour"
 COLLECTION_NAME_3 = "viator"
 RESULT_OUTPUT_PATH ="result"
 SEARCH_ATTRIBUTE = "title"
 
+
+#TODO reimplement this as a class
 
 def create_md_swiss(doc, title,description, price,inclusions, exclusions,to_know):
     doc.add_header(title)
@@ -35,6 +38,19 @@ def create_md_viator(doc, title,description, price,rating):
     
     return doc
     
+    
+    
+def print_snippet_viator(title, description, price, rating, user_query):
+    max_words = 40
+    sep = "#"*50+"\n"
+    print(sep)
+    print(colored(title + "\n", 'red'))
+    result_list = description.split()[:max_words]
+    result_str = " ".join(result_list)
+    print(colored(result_str,'blue') + "\n")
+    print(price + "\n")
+    print(rating + "\n")
+
     
 
 def cleanup_string(input):
@@ -79,7 +95,7 @@ def query(choice = 1, user_query = "*%3A*", choice_attribute = 1):
                     provider = "Provider: " + cleanup_string(str(a['provider'][0]))
                     document = create_md_get_your_guide(Doc,title,description,price,rating, provider)
                     document.output_page(RESULT_OUTPUT_PATH)
-                    print(document)
+                    
                     
         else:
             print("No documents were found for your query.")
@@ -103,7 +119,7 @@ def query(choice = 1, user_query = "*%3A*", choice_attribute = 1):
                     to_know = "Things to know: " + cleanup_string(str(a['know_before_you_go'][0]))
                     document = create_md_swiss(Doc,title,description,price, inclusions, exclusions, to_know)
                     document.output_page(RESULT_OUTPUT_PATH)
-                    print(document)
+
         else:
             print("No documents were found for your query.")
             
@@ -121,7 +137,7 @@ def query(choice = 1, user_query = "*%3A*", choice_attribute = 1):
                     rating = "Rating: " + cleanup_string(str(a['rating'][0]))
                     document = create_md_viator(Doc,title,description,price,rating)
                     document.output_page(RESULT_OUTPUT_PATH)
-                    print(document)
+                    print_snippet_viator(title, description,price,rating, user_query)
             
             
         else:
