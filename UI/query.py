@@ -14,7 +14,13 @@ class Query():
         self.website_choice = website_choice
         self.attribute_choice = attribute_choice
         self.result_output_path = RESULT_OUTPUT_PATH
+        self.doc_md = Document()
         
+        
+        
+        
+    # def setup_md(self):
+    #     self.doc_md.add_header(self.title)        
         
     def get_request(self):
         if self.user_query == "":
