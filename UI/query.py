@@ -17,8 +17,6 @@ class Query():
         self.doc_md = Document()
         
         
-        
-        
     # def setup_md(self):
     #     self.doc_md.add_header(self.title)        
         
@@ -27,12 +25,6 @@ class Query():
             self.user_query = "*%3A*"
         
         
-        
-        
-        
-        
-
-
 #TODO reimplement this as a class
 
 def create_md_swiss(doc, title,description, price,inclusions, exclusions,to_know):

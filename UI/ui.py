@@ -1,7 +1,19 @@
 from query import query
+from flask import Flask
 WEBSITE_1 =  "Get Your Guide"
 WEBSITE_2 =  "Swiss Tour"
 WEBSITE_3 =  "Viator"
+
+
+def webUI(app):
+    
+    @app.route("/")
+    def hello_world():
+        return "<p>Hello, World!</p>"
+
+
+
+
 
 def terminalUI():
     seperator = "#"*50 + "\n"
@@ -20,6 +32,7 @@ def terminalUI():
         print("You chose: " + WEBSITE_1+'\n')
         print(seperator)
         print("What search attribute do you want to have?\n")
+        print("[0] None\n")
         print("[1] Title\n")
         print("[2] Price\n")
         print("[3] Description\n")
@@ -31,6 +44,7 @@ def terminalUI():
         print("You chose: " + WEBSITE_2+'\n')
         print(seperator)
         print("What search attribute do you want to have?\n")
+        print("[0] None\n")
         print("[1] Title\n")
         print("[2] Price\n")
         print("[3] Description\n")
@@ -50,6 +64,7 @@ def terminalUI():
         print("Paris\n")
         print(seperator)
         print("What search attribute do you want to have?\n")
+        print("[0] None\n")
         print("[1] Title\n")
         print("[2] Price\n")
         print("[3] Description\n")
@@ -57,7 +72,6 @@ def terminalUI():
         
         choice_attribute = int(input("Choice: "))
     
-        
     question = input("What is your query: ")
     query(choice_website, question, choice_attribute)
 

@@ -1,12 +1,19 @@
 import sys
 from query import query
-from ui import terminalUI
+from ui import terminalUI, webUI
+from flask import Flask
 
 
-def main():
-    terminalUI()
-    
+app = Flask(__name__)
+webUI(app)
+# app.run()
 
-if __name__ == '__main__':
-    main()
+
+# def main(app):
+#     # terminalUI()
+#     webUI(app)
+# if __name__ == '__main__':
+#     app = Flask(__name__)
+#     main(app)
+#     app.run()
     
