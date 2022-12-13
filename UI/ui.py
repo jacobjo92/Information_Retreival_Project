@@ -1,16 +1,7 @@
 from query import query
-from flask import Flask
 WEBSITE_1 =  "Get Your Guide"
 WEBSITE_2 =  "Swiss Tour"
 WEBSITE_3 =  "Viator"
-
-
-def webUI(app):
-    
-    @app.route("/")
-    def hello_world():
-        return "<p>Hello, World!</p>"
-
 
 
 
