@@ -3,9 +3,6 @@ WEBSITE_1 =  "Get Your Guide"
 WEBSITE_2 =  "Swiss Tour"
 WEBSITE_3 =  "Viator"
 
-
-
-
 def terminalUI():
     seperator = "#"*50 + "\n"
     

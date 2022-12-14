@@ -1,7 +1,29 @@
-<!DOCTYPE html>
-<head>
-    <title>Simple Search Engine</title>
-</head>
-<body>
-    
-</body>
+{% extends 'base.html' %}
+
+{% block head%}
+<title>Buggy SHIT</title>
+{% endblock %}
+
+
+{% block body %}
+<div class="content" > 
+<h1> Web Search title </h1>
+<form action="/" method="POST">
+  <input type="text" name="content" id="content">
+  <input type="submit" value="search">
+  <h2>Attributes </h2>
+  <input type="checkbox" id="title" name="title">
+  <label for="attribute1"> Title</label><br>
+  <input type="checkbox" id="description" name="description">
+  <label for="attribute2"> Description</label><br>
+  <input type="checkbox" id="price" name="price">
+  <label for="attribute3"> Price</label><br>
+  <input type="checkbox" id="rating" name="rating">
+  <label for="attribute4"> Rating</label><br>
+  <input type="checkbox" id="included" name="included">
+  <label for="attribute5"> Included </label><br>
+  <input type="checkbox" id="excluded" name="excluded">
+  <label for="attribute6">Excluded</label><br>
+</form> 
+</div>
+{% endblock body %}

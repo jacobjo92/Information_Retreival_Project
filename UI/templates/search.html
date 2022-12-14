@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<head>
-    <title>Simple Search Engine</title>
-</head>
-<body>
-    <form action="/search" method="POST">
-        {{form.csrf_token}}
-        {{form.ids}}
-        {{form.submit}}
+<div class="block1">
+    <h1>Test Title Webpage {{name}}!</h1>
+    <form action="/search">
+      <label for="fname">Search:</label><br/>
+      <input type="text" id="fname" name="fname" /><br />
     </form>
-    <banana>
-</body>
+  </div>
