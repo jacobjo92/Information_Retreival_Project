@@ -1,4 +1,151 @@
-body{
+/*author: Dylan Ramelli */
+
+@font-face {
+    font-family: belleruse;
+    src: url("/fonts/Bellerose.ttf");
+  }
+  
+  /*No margin on the side or padding*/
+  * {
+    box-sizing: border-box;
+    padding: 0;
     margin: 0;
-    font-family: sans-serif;
-}
+  }
+  
+  /*Main settings*/
+  body {
+    color: #212121;
+    text-align: center;
+    font-size: 26px;
+    line-height: 3;
+    font-family: belleruse;
+  }
+  
+  title {
+    font-size: large;
+  }
+  
+  .item {
+    flex-wrap: wrap;
+    color: rgba(255, 255, 255, 0.515);
+    padding: 9px 5px;
+  }
+  
+  .container {
+    flex-direction: row;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    display: flex;
+    height: 100%;
+  }
+  
+  header {
+    width: 100%;
+    background: #455a64;
+    order: 1;
+  }
+  
+  main {
+    background: #607d8b;
+    flex: 4;
+    order: 3;
+  }
+  
+  .left-sidebar {
+    background: #9e9e9e;
+    flex: 1;
+    order: 2;
+  }
+  
+  .right-sidebar {
+    background: #9e9e9e;
+    flex: 1;
+    order: 4;
+  }
+  
+  footer {
+    width: 100%;
+    background: #455a64;
+    order: 5;
+  }
+  
+  /* Mobile Setup*/
+  
+  @media (orientation: portrait) {
+    .container {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      flex-grow: 1;
+      height: 100%;
+    }
+    header {
+      order: 1;
+    }
+    main {
+      order: 3;
+      flex-basis: auto;
+    }
+    footer {
+      order: 5;
+    }
+    .left-sidebar {
+      order: 2;
+    }
+    .right-sidebar {
+      order: 4;
+    }
+  }
+  
+  .video {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+  }
+  
+  /* Link Stuff */
+  
+  a {
+    text-decoration: none;
+  }
+  
+  h1 {
+    color: aliceblue;
+  }
+  
+  h2 {
+    font-size: medium;
+    margin-top: 0%;
+  }
+  
+  a:visited {
+    text-decoration: none;
+    color: rgb(46, 46, 46);
+  }
+  
+  a:link {
+    color: white;
+  }
+  
+  a:hover {
+    opacity: 0.6;
+  }
+  
+  .fa {
+    text-align: center;
+    text-decoration: none;
+  }
+  
+  .fa:hover {
+    opacity: 0.7;
+  }
+  
+  .fa-instagram {
+    color: white;
+  }
+  
+  ul {
+    list-style-type: none;
+  }
