@@ -49,7 +49,7 @@ def print_snippet_md():
 
 def pyinquirerUI():
     intro_text_panel = Panel(Text("Welcome to terminal based web search!", style="bold magenta", justify="center"))
-    extra_info_text = Text("There are three avaiable websited to search from: Swiss Tours, Get Your Guide and Viator.\n")
+    extra_info_text = Text("There are three avaiable websites to search from: Swiss Tours, Get Your Guide and Viator.\n")
     extra_info_text.append(Text("Viator offer tours from Las Vegas, The Netherlands and Paris.\n"))
     extra_info_text.append(Text("Get Your Guide offer tours from London.\n"))
     extra_info_text.append(Text("Swiss Tours offers tours from Switzerland."))
