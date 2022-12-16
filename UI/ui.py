@@ -1,18 +1,49 @@
 from query import query
+from snakemd import Document
 from rich import print
 from rich.console import Console
 from rich.text import Text
 from rich.panel import Panel
 from rich.layout import Layout
 from rich.prompt import Prompt
+from rich.markdown import Markdown, MarkdownContext
+from rich.style import Style
 from PyInquirer import prompt
 WEBSITE_1 =  'Get Your Guide'
 WEBSITE_2 =  'Swiss Tours'
 WEBSITE_3 =  'Viator'
-
+RESULT_OUTPUT_PATH ="result"
 COLLECTION_NAME_1 = 'getyourguide'
 COLLECTION_NAME_2 = 'swisstour'
 COLLECTION_NAME_3 = 'viator'
+
+
+console= Console()
+style = Style(bold=True)
+# context = MarkdownContext(console,options=)
+
+# context.enter_style(style)
+
+console.style= style
+
+
+def create_md(doc, title,description, price,rating):
+    doc.add_header(title,1)
+    doc.add_header("Description",2)
+    doc.add_header(description,3)
+    doc.add_header("Price",2)
+    doc.add_header(price,3)
+    doc.add_header("Rating",2)
+    doc.add_header(rating,3)
+    
+    return doc
+
+
+def print_snippet_md():
+    f = open('result/query.md','r')
+    stringmd = f.read()
+    md = Markdown(stringmd)
+    console.print(md)
 
 
 def pyinquirerUI():
@@ -46,7 +77,7 @@ def pyinquirerUI():
         {
             'type':'list',
             'name':'attribute',
-            'message': 'Which attribute do you want to use?',
+            'message': 'Which attribute do you want to use to filter?',
             'choices':['Title','Description','Price','Rating']
         },
         {
@@ -69,8 +100,13 @@ def pyinquirerUI():
         website = COLLECTION_NAME_3
         
     attribute = attribute.lower()
-    
-    query(website, user_query, attribute)
+    Doc = Document("query")
+    title, description, price, rating =  query(website, user_query, attribute)
+    for i in range(0,len(title)):
+        document = create_md(Doc,title[i],description[i],price[i],rating[i])
+        document.output_page(RESULT_OUTPUT_PATH)
+    print(Panel(Text("Query results were saved in: {results}".format(results=RESULT_OUTPUT_PATH+"/"+"query.md"))))
+    print_snippet_md()
     
 
 def terminalUI():

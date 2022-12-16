@@ -1,7 +1,4 @@
-import sys
-from query import query
-from ui import terminalUI, pyinquirerUI
-
+from ui import pyinquirerUI
 
 def main():
     pyinquirerUI()
