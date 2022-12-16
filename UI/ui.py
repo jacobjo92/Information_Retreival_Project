@@ -1,5 +1,10 @@
 from query import query
 from rich import print
+from rich.console import Console
+from rich.text import Text
+from rich.panel import Panel
+from rich.layout import Layout
+from rich.prompt import Prompt
 from PyInquirer import prompt
 WEBSITE_1 =  'Get Your Guide'
 WEBSITE_2 =  'Swiss Tours'
@@ -12,7 +17,25 @@ COLLECTION_NAME_3 = 'viator'
 
 def pyinquirerUI():
     
-    print("[bold magenta]Welcome to an unfriendly web search![/bold magenta]")
+    # layout = Layout()
+    # layout.split_column(
+    #     Layout(name="upper"),
+    #     Layout(name="lower")
+    # )
+    intro_text_panel = Panel(Text("Welcome to an unfriendly web search!", style="bold magenta", justify="center"))
+    print(intro_text_panel)
+    
+    # layout["upper"].size = 5
+    # layout["lower"].size = 5
+    # layout["lower"].visible = False
+    # layout["upper"].update(
+    #     intro_text_panel
+    # )
+    
+    # print(layout)
+    
+    
+    
     questions = [
         {
             'type':'list',
