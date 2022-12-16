@@ -34,7 +34,7 @@ n_documents = 0
 console.style= style
 
 
-def create_md(doc, title,description, price,rating):
+def create_md(doc, title,description, price,rating, url):
     doc.add_header(title,1)
     doc.add_header("Description",2)
     doc.add_header(description,3)
@@ -42,6 +42,8 @@ def create_md(doc, title,description, price,rating):
     doc.add_header(price,3)
     doc.add_header("Rating",2)
     doc.add_header(rating,3)
+    doc.add_header("URL",2)
+    doc.add_header(url,3)
     
     return doc
 
@@ -90,21 +92,21 @@ def pyinquirerUI():
         website = COLLECTION_NAME_3
         
     attribute = attribute.lower()
-    sort = sort.lower()
     
-    title, description, price, rating =  query(website, user_query, attribute)
+    title, description, price, rating, url =  query(website, user_query, attribute)
+    
+    print(url)
     
     # create_csv(title, description,price,rating,len(title))
     
     for i in range(0,len(title)):
-        document = create_md(Doc,title[i],description[i],price[i],rating[i])
+        document = create_md(Doc,title[i],description[i],price[i],rating[i], url[i])
         document.output_page(RESULT_OUTPUT_PATH)
     print(Panel(Text("Query results were saved in: {results}".format(results=RESULT_OUTPUT_PATH+"/"+"query.md"))))
     print_snippet_md()
     
 
 def terminalUI():
-    
     
     seperator = "#"*50 + "\n"
     print(seperator)
