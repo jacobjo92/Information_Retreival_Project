@@ -17,6 +17,7 @@ class EdxSpider(scrapy.Spider):
         xs = tour_page_response.css('td::text').getall()
         price = xs[5]
         description = tour_page_response.css('p::text').get()
+        url = tour_page_response.url
         inclusions = tour_page_response.xpath('//*[@class="inclusions"]/ul/li//text()').getall()
         exclusions = tour_page_response.xpath('//*[@class="exclusions"]/ul/li//text()').getall()
         know_before_you_go = tour_page_response.xpath('//*[@class="knowbeforeyougo"]/ul/li//text()').getall()
@@ -25,6 +26,7 @@ class EdxSpider(scrapy.Spider):
         yield {
             "title": title,
             "price": price,
+            "url":url,
             "description": description,
             "inclusions": inclusions,
             "exclusions": exclusions,

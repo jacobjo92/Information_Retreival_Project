@@ -16,6 +16,7 @@ class EdxSpider(scrapy.Spider):
         xs = tour_page_response.css('.title2__C3R7::text').getall()
         title = xs[0]
         price = tour_page_response.css('.defaultColor__1NL9::text').get()
+        url = tour_page_response.url
         price = price.replace('CHF\u00a0', '')
         description = tour_page_response.xpath('//*[@class="overviewWrapper__bMs4"]/div/div/text()').extract()
         rating = tour_page_response.css('.averageRatingValue__Q1ep::text').get()      
@@ -23,6 +24,7 @@ class EdxSpider(scrapy.Spider):
         yield {
             "title": title,
             "description": description,
+            "url":url,
             "price": price,
             "rating": rating,
         }
