@@ -1,39 +1,60 @@
 from query import query
-import pprint
-# from PyInquirer import prompt
-WEBSITE_1 =  "Get Your Guide"
-WEBSITE_2 =  "Swiss Tour"
-WEBSITE_3 =  "Viator"
+from rich import print
+from PyInquirer import prompt
+WEBSITE_1 =  'Get Your Guide'
+WEBSITE_2 =  'Swiss Tours'
+WEBSITE_3 =  'Viator'
+
+COLLECTION_NAME_1 = 'getyourguide'
+COLLECTION_NAME_2 = 'swisstour'
+COLLECTION_NAME_3 = 'viator'
 
 
-# def pyinquirerUI():
+def pyinquirerUI():
     
-#     print("Welcome to an unfirendly web search!")
-#     questions = [
-#         {
-#             'type':'list',
-#             'name':'website',
-#             'message': 'Which website do you want to search from?',
-#             'website':['Swiss Tours','GetYourGuide','Viator']
-#         },
-#         {
-#             'type':'list',
-#             'name':'attribute',
-#             'message': 'Which attribute do you want to use?',
-#             'website':['Title','Description','Price','Rating']
-#         }
-#     ]
+    print("[bold magenta]Welcome to an unfriendly web search![/bold magenta]")
+    questions = [
+        {
+            'type':'list',
+            'name':'website',
+            'message': 'Which website do you want to search from?',
+            'choices':['Swiss Tours','GetYourGuide','Viator']
+        },
+        {
+            'type':'list',
+            'name':'attribute',
+            'message': 'Which attribute do you want to use?',
+            'choices':['Title','Description','Price','Rating']
+        },
+        {
+            'type':'input',
+            'name':'query',
+            'message':'What is your query?',
+        }
+    ]
     
-#     answers = prompt.prompt(questions)
-#     pprint(answers)
+    answers = prompt(questions)
+    website = answers['website']
+    attribute = answers['attribute']
+    user_query = answers['query']
+    
+    if website == WEBSITE_1:
+        website = COLLECTION_NAME_1
+    elif website == WEBSITE_2:
+        website = COLLECTION_NAME_2
+    elif website == WEBSITE_3:
+        website = COLLECTION_NAME_3
+        
+    attribute = attribute.lower()
+    
+    query(website, user_query, attribute)
+    
 
 def terminalUI():
     
-    pp = pprint.PrettyPrinter(indent=4)
     
     seperator = "#"*50 + "\n"
-    
-    pp.pprint(seperator)
+    print(seperator)
     
     print("Select one of the following:\n")
     print("[1] Get Your Guide\n")
