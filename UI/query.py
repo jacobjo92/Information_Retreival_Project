@@ -11,13 +11,11 @@ def query(choice, user_query, attribute):
     rating = []
     url = []
     
-    
     URL = "http://localhost:8983/solr/" + choice + "/select?df="+attribute+"&indent=true&q.op=OR&q="+user_query
     res = requests.get(URL)
     
     if choice != "swisstour":
         if res.json()['response']['numFound'] > 0:
-            print("Number of results: " + str(res.json()['response']['numFound']))
             for a in res.json()['response']['docs']:
                 if 'description' in a and 'title' in a and 'rating' in a and 'price' in a and 'url' in a:
                     title.append(cleanup_string(str(a['title'][0])))
@@ -30,7 +28,6 @@ def query(choice, user_query, attribute):
             print("No documents were found for your query.")
     else:
         if res.json()['response']['numFound'] > 0:
-            print("Number of results: " + str(res.json()['response']['numFound']))
             for a in res.json()['response']['docs']:
                 if 'description' in a and 'title' in a and 'price' in a and 'url' in a:
                     title.append(cleanup_string(str(a['title'][0])))

@@ -57,7 +57,13 @@ def print_snippet_md():
 
 def pyinquirerUI():
     intro_text_panel = Panel(Text("Welcome to terminal based web search!", style="bold magenta", justify="center"))
+    extra_info_text = Text("There are three avaiable websited to search from: Swiss Tours, Get Your Guide and Viator.\n")
+    extra_info_text.append(Text("Viator offer tours from Las Vegas, The Netherlands, New York and Paris.\n"))
+    extra_info_text.append(Text("Get Your Guide offer tours from London.\n"))
+    extra_info_text.append(Text("Swiss Tours offers tours from Switzerland."))
+    
     print(intro_text_panel)
+    print(Panel(extra_info_text))
     
     questions = [
         {
@@ -95,15 +101,14 @@ def pyinquirerUI():
     
     title, description, price, rating, url =  query(website, user_query, attribute)
     
-    print(url)
-    
-    # create_csv(title, description,price,rating,len(title))
+    create_csv(title, description,len(title))
     
     for i in range(0,len(title)):
         document = create_md(Doc,title[i],description[i],price[i],rating[i], url[i])
-        document.output_page(RESULT_OUTPUT_PATH)
-    print(Panel(Text("Query results were saved in: {results}".format(results=RESULT_OUTPUT_PATH+"/"+"query.md"))))
+    document.output_page(RESULT_OUTPUT_PATH)
     print_snippet_md()
+    print(Panel(Text("Number of results" + str(len(title)))))
+    print(Panel(Text("Query results were saved in: {results}".format(results=RESULT_OUTPUT_PATH+"/"+"query.md"))))
     
 
 def terminalUI():
