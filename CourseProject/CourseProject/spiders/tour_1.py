@@ -24,8 +24,6 @@ class EdxSpider(scrapy.Spider):
             description = tour_page_response.css(
                 '.activity-overview__content::text').get()
             description = description.replace('\n    ','')
-
-        url = tour_page_response.url
         price = tour_page_response.css(
             '.price-block__price-actual span::text').get()
         price = price.replace('£', '')
@@ -39,6 +37,7 @@ class EdxSpider(scrapy.Spider):
         provider = tour_page_response.css('.supplier-name__link::text').get()
         # provider = provider.replace('\n    ','')
         # provider = provider.replace('\n  ','')
+        url = tour_page_response.url
         yield {
             "title": title,
             "description": description,
