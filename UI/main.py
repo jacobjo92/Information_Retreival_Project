@@ -1,10 +1,11 @@
 import sys
 from query import query
-from ui import terminalUI
+from ui import terminalUI, pyinquirerUI
 
 
 def main():
-    terminalUI()
+    pyinquirerUI()
+    # terminalUI()
     
 
 if __name__ == '__main__':

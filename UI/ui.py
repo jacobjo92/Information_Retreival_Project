@@ -1,10 +1,39 @@
 from query import query
+import pprint
+# from PyInquirer import prompt
 WEBSITE_1 =  "Get Your Guide"
 WEBSITE_2 =  "Swiss Tour"
 WEBSITE_3 =  "Viator"
 
+
+# def pyinquirerUI():
+    
+#     print("Welcome to an unfirendly web search!")
+#     questions = [
+#         {
+#             'type':'list',
+#             'name':'website',
+#             'message': 'Which website do you want to search from?',
+#             'website':['Swiss Tours','GetYourGuide','Viator']
+#         },
+#         {
+#             'type':'list',
+#             'name':'attribute',
+#             'message': 'Which attribute do you want to use?',
+#             'website':['Title','Description','Price','Rating']
+#         }
+#     ]
+    
+#     answers = prompt.prompt(questions)
+#     pprint(answers)
+
 def terminalUI():
+    
+    pp = pprint.PrettyPrinter(indent=4)
+    
     seperator = "#"*50 + "\n"
+    
+    pp.pprint(seperator)
     
     print("Select one of the following:\n")
     print("[1] Get Your Guide\n")
