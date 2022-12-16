@@ -11,7 +11,6 @@ from PyInquirer import prompt
 from reccomender import create_csv
 
 
-
 WEBSITE_1 =  'Get Your Guide'
 WEBSITE_2 =  'Swiss Tours'
 WEBSITE_3 =  'Viator'
@@ -24,12 +23,6 @@ Doc = Document("query")
 layout = Layout()
 console= Console()
 style = Style(bold=True)
-
-n_documents = 0
-# context = MarkdownContext(console,options=)
-
-# context.enter_style(style)
-
 console.style= style
 
 
@@ -79,13 +72,13 @@ def pyinquirerUI():
         },
         {
             'type':'input',
-            'name':'priceattribute',
-            'message': 'How much are you willing to spend?',
+            'name':'price_attribute',
+            'message': 'How much are you willing to spend?'
         },
         {
             'type':'input',
             'name':'query',
-            'message':'What is your query?',
+            'message':'What is your query?'
         }
     ]
     
@@ -93,7 +86,7 @@ def pyinquirerUI():
     website = answers['website']
     attribute = answers['attribute']
     user_query = answers['query']
-    max_price = answers['priceattribute']
+    max_price = answers['price_attribute']
     
     if website == WEBSITE_1:
         website = COLLECTION_NAME_1
