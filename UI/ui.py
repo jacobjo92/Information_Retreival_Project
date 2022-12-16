@@ -79,6 +79,11 @@ def pyinquirerUI():
         },
         {
             'type':'input',
+            'name':'priceattribute',
+            'message': 'How much are you willing to spend?',
+        },
+        {
+            'type':'input',
             'name':'query',
             'message':'What is your query?',
         }
@@ -88,6 +93,7 @@ def pyinquirerUI():
     website = answers['website']
     attribute = answers['attribute']
     user_query = answers['query']
+    max_price = answers['priceattribute']
     
     if website == WEBSITE_1:
         website = COLLECTION_NAME_1
@@ -98,13 +104,14 @@ def pyinquirerUI():
         
     attribute = attribute.lower()
     
-    title, description, price, rating, url =  query(website, user_query, attribute)
+    title, description, price, rating, url =  query(website, user_query, attribute, max_price)
     if title != "0":
         
         for i in range(0,len(title)):
             document = create_md(Doc,title[i],description[i],price[i],rating[i], url[i])
         document.output_page(RESULT_OUTPUT_PATH)
         print_snippet_md()
+        
         print(Panel(Text("Number of results: " + str(len(title)))))
         print(Panel(Text("Query results were saved in: {results}".format(results=RESULT_OUTPUT_PATH+"/"+"query.md"))))
     else:
