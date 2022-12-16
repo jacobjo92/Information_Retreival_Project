@@ -53,7 +53,7 @@ def pyinquirerUI():
     #     Layout(name="upper"),
     #     Layout(name="lower")
     # )
-    intro_text_panel = Panel(Text("Welcome to an unfriendly web search!", style="bold magenta", justify="center"))
+    intro_text_panel = Panel(Text("Welcome to terminal based web search!", style="bold magenta", justify="center"))
     print(intro_text_panel)
     
     # layout["upper"].size = 5
