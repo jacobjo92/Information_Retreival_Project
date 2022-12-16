@@ -1,4 +1,4 @@
-from ui import pyinquirerUI
+from ui import terminalUI,pyinquirerUI
 
 def main():
     pyinquirerUI()

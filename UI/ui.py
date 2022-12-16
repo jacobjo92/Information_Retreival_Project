@@ -9,6 +9,10 @@ from rich.prompt import Prompt
 from rich.markdown import Markdown, MarkdownContext
 from rich.style import Style
 from PyInquirer import prompt
+from reccomender import create_csv
+
+
+
 WEBSITE_1 =  'Get Your Guide'
 WEBSITE_2 =  'Swiss Tours'
 WEBSITE_3 =  'Viator'
@@ -17,9 +21,12 @@ COLLECTION_NAME_1 = 'getyourguide'
 COLLECTION_NAME_2 = 'swisstour'
 COLLECTION_NAME_3 = 'viator'
 
-
+Doc = Document("query")
+layout = Layout()
 console= Console()
 style = Style(bold=True)
+
+n_documents = 0
 # context = MarkdownContext(console,options=)
 
 # context.enter_style(style)
@@ -47,25 +54,8 @@ def print_snippet_md():
 
 
 def pyinquirerUI():
-    
-    # layout = Layout()
-    # layout.split_column(
-    #     Layout(name="upper"),
-    #     Layout(name="lower")
-    # )
     intro_text_panel = Panel(Text("Welcome to terminal based web search!", style="bold magenta", justify="center"))
     print(intro_text_panel)
-    
-    # layout["upper"].size = 5
-    # layout["lower"].size = 5
-    # layout["lower"].visible = False
-    # layout["upper"].update(
-    #     intro_text_panel
-    # )
-    
-    # print(layout)
-    
-    
     
     questions = [
         {
@@ -78,7 +68,7 @@ def pyinquirerUI():
             'type':'list',
             'name':'attribute',
             'message': 'Which attribute do you want to use to filter?',
-            'choices':['Title','Description','Price','Rating']
+            'choices':['Title','Description']
         },
         {
             'type':'input',
@@ -100,8 +90,12 @@ def pyinquirerUI():
         website = COLLECTION_NAME_3
         
     attribute = attribute.lower()
-    Doc = Document("query")
+    sort = sort.lower()
+    
     title, description, price, rating =  query(website, user_query, attribute)
+    
+    # create_csv(title, description,price,rating,len(title))
+    
     for i in range(0,len(title)):
         document = create_md(Doc,title[i],description[i],price[i],rating[i])
         document.output_page(RESULT_OUTPUT_PATH)
