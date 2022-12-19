@@ -87,7 +87,7 @@ def pyinquirerUI():
     attribute = answers['attribute']
     user_query = answers['query']
     max_price = answers['price_attribute']
-    
+        
     if website == WEBSITE_1:
         website = COLLECTION_NAME_1
     elif website == WEBSITE_2:

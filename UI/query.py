@@ -10,8 +10,16 @@ def query(choice, user_query, attribute, max_price):
     price = []
     rating = []
     url = []
-    
-    URL = "http://localhost:8983/solr/" + choice + "/select?df="+attribute+"&indent=true&q.op=AND&q="+attribute+":"+user_query + " price:" +"[* TO "+ max_price+"]"
+    URL = ""
+    if user_query == "" and max_price == "":
+        URL = "http://localhost:8983/solr/" + choice + "/select?df="+attribute+"&indent=true&q.op=AND&q=*:*"    
+    if user_query == "" and max_price != "":
+        URL = "http://localhost:8983/solr/" + choice + "/select?df="+attribute+"&indent=true&q.op=AND&q=price:" +"[* TO "+ max_price+"]"
+    if user_query != "" and max_price != "":
+        URL = "http://localhost:8983/solr/" + choice + "/select?df="+attribute+"&indent=true&q.op=AND&q="+attribute+":"+user_query + " price:" +"[* TO "+ max_price+"]"
+    if user_query != "" and max_price == "":
+        URL = "http://localhost:8983/solr/" + choice + "/select?df="+attribute+"&indent=true&q.op=AND&q="+attribute+":"+user_query
+
     res = requests.get(URL)
     zero = "0"
     
