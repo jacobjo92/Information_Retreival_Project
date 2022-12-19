@@ -5,12 +5,10 @@ from rich.console import Console
 from rich.text import Text
 from rich.panel import Panel
 from rich.layout import Layout
-from rich.prompt import Prompt
-from rich.markdown import Markdown, MarkdownContext
+from rich.markdown import Markdown
 from rich.style import Style
 from PyInquirer import prompt
 from reccomender import create_csv
-
 
 
 WEBSITE_1 =  'Get Your Guide'
@@ -25,12 +23,6 @@ Doc = Document("query")
 layout = Layout()
 console= Console()
 style = Style(bold=True)
-
-n_documents = 0
-# context = MarkdownContext(console,options=)
-
-# context.enter_style(style)
-
 console.style= style
 
 
@@ -57,8 +49,8 @@ def print_snippet_md():
 
 def pyinquirerUI():
     intro_text_panel = Panel(Text("Welcome to terminal based web search!", style="bold magenta", justify="center"))
-    extra_info_text = Text("There are three avaiable websited to search from: Swiss Tours, Get Your Guide and Viator.\n")
-    extra_info_text.append(Text("Viator offer tours from Las Vegas, The Netherlands, New York and Paris.\n"))
+    extra_info_text = Text("There are three avaiable websites to search from: Swiss Tours, Get Your Guide and Viator.\n")
+    extra_info_text.append(Text("Viator offer tours from Las Vegas, The Netherlands and Paris.\n"))
     extra_info_text.append(Text("Get Your Guide offer tours from London.\n"))
     extra_info_text.append(Text("Swiss Tours offers tours from Switzerland."))
     
@@ -70,7 +62,7 @@ def pyinquirerUI():
             'type':'list',
             'name':'website',
             'message': 'Which website do you want to search from?',
-            'choices':['Swiss Tours','GetYourGuide','Viator']
+            'choices':['Swiss Tours','Get Your Guide','Viator']
         },
         {
             'type':'list',
@@ -80,8 +72,13 @@ def pyinquirerUI():
         },
         {
             'type':'input',
+            'name':'price_attribute',
+            'message': 'How much are you willing to spend?'
+        },
+        {
+            'type':'input',
             'name':'query',
-            'message':'What is your query?',
+            'message':'What is your query?'
         }
     ]
     
@@ -89,7 +86,8 @@ def pyinquirerUI():
     website = answers['website']
     attribute = answers['attribute']
     user_query = answers['query']
-    
+    max_price = answers['price_attribute']
+        
     if website == WEBSITE_1:
         website = COLLECTION_NAME_1
     elif website == WEBSITE_2:
@@ -99,16 +97,21 @@ def pyinquirerUI():
         
     attribute = attribute.lower()
     
-    title, description, price, rating, url =  query(website, user_query, attribute)
-    
-    create_csv(title, description,len(title))
-    
-    for i in range(0,len(title)):
-        document = create_md(Doc,title[i],description[i],price[i],rating[i], url[i])
-    document.output_page(RESULT_OUTPUT_PATH)
-    print_snippet_md()
-    print(Panel(Text("Number of results" + str(len(title)))))
-    print(Panel(Text("Query results were saved in: {results}".format(results=RESULT_OUTPUT_PATH+"/"+"query.md"))))
+    title, description, price, rating, url =  query(website, user_query, attribute, max_price)
+    if title != "0":
+        
+        document = Doc
+        
+        for i in range(0,len(title)):
+            document = create_md(Doc,title[i],description[i],price[i],rating[i], url[i])
+        document.output_page(RESULT_OUTPUT_PATH)
+        print_snippet_md()
+        
+        print(Panel(Text("Number of results: " + str(len(title)))))
+        print(Panel(Text("Query results were saved in: {results}".format(results=RESULT_OUTPUT_PATH+"/"+"query.md"))))
+    else:
+        print(Panel(Text("Number of results: 0")))
+        print(Panel(Text("Query results were saved in: {results}".format(results=RESULT_OUTPUT_PATH+"/"+"query.md"))))
     
 
 def terminalUI():
