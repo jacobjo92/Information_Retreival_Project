@@ -137,6 +137,7 @@ def pyinquirerUI():
     if title != "0":
 
         # RECOMMENDER STUFF
+        # Got this from: https://medium.com/analytics-vidhya/content-based-recommender-systems-in-python-2b330e01eb80
         create_csv(title, description, price, rating, url, len(title))
 
         dataframe = pd.read_csv('metadata.csv')
