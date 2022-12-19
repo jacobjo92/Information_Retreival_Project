@@ -62,7 +62,7 @@ def pyinquirerUI():
             'type':'list',
             'name':'website',
             'message': 'Which website do you want to search from?',
-            'choices':['Swiss Tours','GetYourGuide','Viator']
+            'choices':['Swiss Tours','Get Your Guide','Viator']
         },
         {
             'type':'list',
@@ -99,6 +99,8 @@ def pyinquirerUI():
     
     title, description, price, rating, url =  query(website, user_query, attribute, max_price)
     if title != "0":
+        
+        document = Doc
         
         for i in range(0,len(title)):
             document = create_md(Doc,title[i],description[i],price[i],rating[i], url[i])
